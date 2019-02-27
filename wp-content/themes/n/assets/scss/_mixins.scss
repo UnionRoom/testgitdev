@@ -1,0 +1,110 @@
+@mixin breakpoint($class) {
+    @if $class == mobile {
+        @media (max-width: 639px) { @content; }
+    }
+    
+    @else if $class == tablet {
+        @media (min-width: 767px) { @content; }
+    }
+    
+    @else if $class == tablet-wide {
+        @media (min-width: 1023px) { @content; }
+    }
+
+    @else {
+        @warn "Breakpoint mixin supports: mobile, tablet, tablet-wide";
+    }
+}
+
+@mixin mq($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width - 1px;
+        }
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+    $padding: unquote( ( $y / $x ) * 100 + '%' );
+    @if $pseudo {
+        &:before {
+            @include pseudo($pos: relative);
+            width: 100%;
+            padding-top: $padding;
+        }
+    } @else {
+        padding-top: $padding;
+    }
+}
+
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+@mixin truncate($truncation-boundary) {
+    max-width: $truncation-boundary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin icon-right($right-distance) {
+    position: absolute;
+    top: 50%;
+    right: $right-distance;
+    transform: translateY(-50%);
+}
+
+@mixin icon-left($left-distance) {
+    position: absolute;
+    top: 50%;
+    left: $left-distance;
+    transform: translateY(-50%);
+}
+
+/* Rem unit with px fallback */
+$guss-rem-baseline: 16px !default;
+
+@function rem($value, $baseline: $guss-rem-baseline) {
+    @if $value == 0 {
+        @return 0; // 0rem -> 0
+    } 
+    
+    @if type-of($value) == list {
+        $result: ();
+
+        @each $e in $value {
+            $result: append($result, rem($e, $baseline));
+        }
+
+        @return $result;
+    } @else {
+        @return if(type-of($value) == number and unit($value) == px, $value / $baseline * 1rem, $value);
+    }
+}
+
+@mixin rem($properties) {
+    @each $property, $value in $properties {
+        @if (type-of($value) == number and $value != 0) {
+            // Turn unitless values into pixels
+            $value: if(unitless($value), $value * 1px, $value);
+        }
+
+        #{$property}: $value;
+        #{$property}: rem($value);
+    }
+}

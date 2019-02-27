@@ -1,0 +1,4 @@
+nbproject/
+/wp-content/uploads/
+.DS_STORE
+node_modules

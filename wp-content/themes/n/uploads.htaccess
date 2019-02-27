@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+RewriteBase /wp-content/uploads/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{HTTP_HOST} localsite\.local$
+
+RewriteRule ^(.+)$ http://localsite.urdev.co.uk/wp-content/uploads/$1 [NC,L]
+</IfModule>

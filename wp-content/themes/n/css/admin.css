@@ -1,0 +1,100 @@
+.what-site { padding: 10px; }
+
+.layout-item span {
+    float:right;
+    color: #aaa;
+}
+
+.mce-i-mce-button-icon { background: url('../img/icon-button.png'); background-size: cover; height: 18px !important; position: relative; top: 1px; }
+
+/* #Grid
+============================================ */
+
+.col-wrapper { margin: 0; }
+
+[class^="col--"], [class*=" col--"] { float: left; min-height: 1px; padding: 0 15px; }
+[class^="col--"] .image, [class*=" col--"] .image { margin-bottom: 20px; }
+
+.col--10 { width: 10%; }
+.col--20 { width: 20%; }
+.col--25 { width: 25%; }
+.col--30 { width: 30%; }
+.col--33 { width: 33.333%; }
+.col--40 { width: 40%; }
+.col--50 { width: 50%; }
+.col--60 { width: 60%; }
+.col--66 { width: 66.666%; }
+.col--70 { width: 70%; }
+.col--75 { width: 75%; }
+.col--80 { width: 80%; }
+.col--90 { width: 90%; }
+.col--100 { width: 100%; float: none; clear: both; }
+
+.col--no-pad { padding-left: 0 !important; padding-right: 0 !important; }
+
+/* Clear columns */
+.col--20:nth-child(5n+1), .col--25:nth-child(4n+1), .col--33:nth-child(3n+1), .col--50:nth-child(2n+1) { clear: left; }
+
+
+/* Grid - Media Queries */
+@media all and (max-width: 1023px) {
+    .col--20 { width: 33.333%; }
+    .col--25 { width: 25%; }
+    .col--33 { width: 33.333%; }
+}
+
+@media all and (max-width: 767px) {
+    .col--20, .col--25 { width: 50%; }
+    .col--20:nth-child(5n+1), .col--25:nth-child(4n+1) { clear: none; }
+    .col--20:nth-child(2n+1), .col--25:nth-child(2n+1) { clear: left; }
+}
+
+@media all and (max-width: 639px) {
+    .col-wrapper { margin: 0 -10px; }
+    [class^="col--"],
+    [class*=" col--"] { padding: 0 10px; }
+    .col--10, .col--20, .col--25, .col--30,
+    .col--33, .col--40, .col--50, .col--60,
+    .col--66, .col--70, .col--75, .col--80,
+    .col--90, .col--100 { width: 100%; }
+}
+
+/* #Grid
+============================================ */
+
+.schema-options a {
+    text-decoration: none!important;
+}
+
+.organisation-schema .card {
+    margin-right:20px;
+}
+
+.organisation-schema code{
+    color: #0073aa!important;
+}
+
+.organisation-schema .comments{
+    background: none!important;
+    color: #ccc!important;
+}
+
+.organisation-schema .schema-code{
+    width: 100%;
+    white-space:pre-wrap;
+    word-wrap: break-word;
+}
+
+.organisation-schema span {
+    color: #aaa;
+}
+
+.layout-item span{float:right;color:#aaa}
+
+.schema-code-container {
+    display: none;
+}
+
+.js-toggle-schema{
+    float:right;
+}
